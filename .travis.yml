@@ -9,10 +9,10 @@ script:
   - docker run renuka1028/react-test npm test -- --coverage
 
 after_success:
-  -docker build -t renuka1028/multi-client ./client
-  -docker build -t renuka1028/multi-ngnix ./ngnix
-  -docker build -t renuka1028/multi-server ./server
-  -docker build -t renuka1028/multi-worker ./worker
+  - docker build -t renuka1028/multi-client ./client
+  - docker build -t renuka1028/multi-ngnix ./ngnix
+  - docker build -t renuka1028/multi-server ./server
+  - docker build -t renuka1028/multi-worker ./worker
 
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
