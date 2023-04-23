@@ -1,0 +1,15 @@
+sudo: required
+services:
+  -docker
+
+before_install:
+  -docker build - t regulagadda/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run regulagadda/react-test npm test -- --coverage
+
+after_success:
+  -docker build -t stephangrider/multi-client ./client
+  -docker build -t stephangrider/multi-ngnix ./ngnix
+  -docker build -t stephangrider/multi-server ./server
+  -docker build -t stephangrider/multi-worker ./worker
